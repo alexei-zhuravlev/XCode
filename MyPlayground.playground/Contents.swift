@@ -6,3 +6,5 @@ let cat = "Semen"
 
 var Just = "bla"
 
+var seondTEst = 33
+
