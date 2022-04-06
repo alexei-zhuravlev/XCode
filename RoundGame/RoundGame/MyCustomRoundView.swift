@@ -44,9 +44,11 @@ import UIKit
     }
     
     func changingSize(){
+        let center = workingView.center
         workingView.frame.size.height += 10
         workingView.frame.size.width += 10
         workingView.layer.cornerRadius = workingView.frame.size.width/2
+        workingView.center = center
     }
     
     func changingColor(){
