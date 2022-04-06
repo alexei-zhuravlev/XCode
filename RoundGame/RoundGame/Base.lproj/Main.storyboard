@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="RoundGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7pU-hM-Dol" customClass="MyCustomRoundView" customModule="RoundGame" customModuleProvider="target">
+                                <rect key="frame" x="87" y="279" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="zO5-bo-yXb" appends="YES" id="m7w-cY-2Wf"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Omv-0m-ix3" customClass="MyCustomRoundView" customModule="RoundGame" customModuleProvider="target">
+                                <rect key="frame" x="49" y="406" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="cGM-Fg-c4V" appends="YES" id="uq6-sY-zWE"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s9e-dz-Muv" customClass="MyCustomRoundView" customModule="RoundGame" customModuleProvider="target">
+                                <rect key="frame" x="182" y="423" width="70" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="zdR-eq-Ily" appends="YES" id="DVO-Xh-pP7"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="koL-U5-ybd" customClass="MyCustomRoundView" customModule="RoundGame" customModuleProvider="target">
+                                <rect key="frame" x="306" y="340" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="pbT-l0-tgf" appends="YES" id="hJm-Mx-wZy"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fey-Nx-Pr2" customClass="MyCustomRoundView" customModule="RoundGame" customModuleProvider="target">
+                                <rect key="frame" x="270" y="255" width="70" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="xQB-qZ-Qbr" appends="YES" id="Nje-tJ-CW5"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Nr-yK-QxM" customClass="MyCustomRoundView" customModule="RoundGame" customModuleProvider="target">
+                                <rect key="frame" x="294" y="484" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="uhJ-3Z-FDN" appends="YES" id="DvN-UD-vYH"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Ze-tF-vOQ" customClass="MyCustomRoundView" customModule="RoundGame" customModuleProvider="target">
+                                <rect key="frame" x="103" y="541" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="DNX-Kv-rZ7" appends="YES" id="xhh-rY-UaG"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                    </view>
+                    <connections>
+                        <outlet property="circleFive" destination="koL-U5-ybd" id="uhb-G3-SKU"/>
+                        <outlet property="circleFour" destination="7Ze-tF-vOQ" id="T2R-Lv-m6h"/>
+                        <outlet property="circleOne" destination="7pU-hM-Dol" id="fA8-Pr-OUi"/>
+                        <outlet property="circleSeven" destination="4Nr-yK-QxM" id="Tlv-mi-P64"/>
+                        <outlet property="circleSix" destination="Fey-Nx-Pr2" id="XAx-Gj-j7h"/>
+                        <outlet property="circleThree" destination="s9e-dz-Muv" id="ufm-AA-te4"/>
+                        <outlet property="circleTwo" destination="Omv-0m-ix3" id="2Jm-Qy-GRS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="zO5-bo-yXb">
+                    <connections>
+                        <action selector="panActionOne:" destination="BYZ-38-t0r" id="8hG-38-lTS"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="Ra2-WC-Br7"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="cGM-Fg-c4V">
+                    <connections>
+                        <action selector="panActionTwo:" destination="BYZ-38-t0r" id="A0z-Tc-0A9"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="zdR-eq-Ily">
+                    <connections>
+                        <action selector="panActionThree:" destination="BYZ-38-t0r" id="QPN-MR-0S8"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="DNX-Kv-rZ7">
+                    <connections>
+                        <action selector="panActionFour:" destination="BYZ-38-t0r" id="VlP-Mt-uRO"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="pbT-l0-tgf">
+                    <connections>
+                        <action selector="panActionFive:" destination="BYZ-38-t0r" id="RRY-Qm-Rdk"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="xQB-qZ-Qbr">
+                    <connections>
+                        <action selector="panActionSix:" destination="BYZ-38-t0r" id="PzK-Wi-YRg"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="uhJ-3Z-FDN">
+                    <connections>
+                        <action selector="panActionSeven:" destination="BYZ-38-t0r" id="YtP-Ln-oPe"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-346" y="131"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
