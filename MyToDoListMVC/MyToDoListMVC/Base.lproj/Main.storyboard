@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KQH-Du-SBr">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="QN8-Qi-Tni">
+            <objects>
+                <navigationController id="KQH-Du-SBr" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="6Cs-3G-oor">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="pTn-ze-98w" kind="relationship" relationship="rootViewController" id="jo3-NO-Fq0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RcT-WB-RVD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-228" y="110"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="4kz-2a-9sq">
+            <objects>
+                <tableViewController id="pTn-ze-98w" customClass="TableViewController" customModule="MyToDoListMVC" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Zby-jv-buY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="01t-7j-qwg" customClass="CustomCell" customModule="MyToDoListMVC" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="01t-7j-qwg" id="oUU-zB-kzY">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5MO-Vf-9U4">
+                                            <rect key="frame" x="30" y="11.5" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNU-Xj-Mpe">
+                                            <rect key="frame" x="384" y="11" width="20" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="vhr-Yz-T8g"/>
+                                            </constraints>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" image="trash" catalog="system"/>
+                                            <connections>
+                                                <action selector="customCellDeleteButtonAction:" destination="01t-7j-qwg" eventType="touchUpInside" id="UPj-yM-KAf"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gss-dt-bDZ">
+                                            <rect key="frame" x="359" y="11" width="20" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="kEE-MJ-fcQ"/>
+                                            </constraints>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" image="square.and.pencil" catalog="system"/>
+                                            <connections>
+                                                <action selector="customCellEditButtonAction:" destination="01t-7j-qwg" eventType="touchUpInside" id="Mgd-6y-2ei"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="BNU-Xj-Mpe" secondAttribute="trailing" constant="10" id="Bbk-pf-kIf"/>
+                                        <constraint firstItem="BNU-Xj-Mpe" firstAttribute="leading" secondItem="Gss-dt-bDZ" secondAttribute="trailing" constant="5" id="COJ-Ql-L9x"/>
+                                        <constraint firstItem="5MO-Vf-9U4" firstAttribute="leading" secondItem="oUU-zB-kzY" secondAttribute="leadingMargin" constant="10" id="PwS-Fl-gfw"/>
+                                        <constraint firstItem="BNU-Xj-Mpe" firstAttribute="centerY" secondItem="oUU-zB-kzY" secondAttribute="centerY" id="Zm0-kd-A68"/>
+                                        <constraint firstItem="5MO-Vf-9U4" firstAttribute="centerY" secondItem="oUU-zB-kzY" secondAttribute="centerY" id="dAj-bl-VjQ"/>
+                                        <constraint firstItem="Gss-dt-bDZ" firstAttribute="centerY" secondItem="oUU-zB-kzY" secondAttribute="centerY" id="qZd-U8-1Aa"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="customCellDeleteButton" destination="BNU-Xj-Mpe" id="DGs-ho-LkX"/>
+                                    <outlet property="customCellEditButton" destination="Gss-dt-bDZ" id="Lyq-0E-tbw"/>
+                                    <outlet property="customCellTextLabel" destination="5MO-Vf-9U4" id="MNM-iF-m07"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="pTn-ze-98w" id="oKI-cw-cTB"/>
+                            <outlet property="delegate" destination="pTn-ze-98w" id="Toe-hj-ycU"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="gXX-3A-15M">
+                        <rightBarButtonItems>
+                            <barButtonItem title="Add Task Button" image="plus" catalog="system" id="j47-X6-Q2t">
+                                <connections>
+                                    <action selector="addTaskButtonAction:" destination="pTn-ze-98w" id="cgm-6c-GBs"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Sorting Task Button" image="arrow.up" catalog="system" id="5ao-eE-vGT">
+                                <connections>
+                                    <action selector="sortingTaskButtonAction:" destination="pTn-ze-98w" id="CZy-f4-XD9"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addTaskButton" destination="j47-X6-Q2t" id="47D-Qe-Ccc"/>
+                        <outlet property="sortingTasksButton" destination="5ao-eE-vGT" id="mkn-hI-EW0"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1kh-d8-RhO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="524" y="111"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrow.up" catalog="system" width="120" height="128"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="square.and.pencil" catalog="system" width="128" height="115"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
