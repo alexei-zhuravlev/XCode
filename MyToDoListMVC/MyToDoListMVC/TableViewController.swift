@@ -143,7 +143,7 @@ class TableViewController: UITableViewController {
         alert.addAction(creatAlertAction)
         alert.addAction(cancelAlertAction)
         present(alert, animated: true, completion: nil)
-        creatAlertAction.isEnabled = false
+        creatAlertAction.isEnabled = true
     }
     
 //    MARK: Нажимаем на кнопку сортировки
