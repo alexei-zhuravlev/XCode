@@ -10,7 +10,15 @@ import UIKit
 import RealmSwift
 
 
-class AlertActions{
+protocol AlerActionProtocol{
+    func alertNotEnoughMoney(controller:UIViewController)
+    func alertAddMoney(controller:UIViewController)
+    func alertGetMoney(controller:UIViewController)
+    func alertMoneyToPhone(controller:UIViewController)
+}
+
+
+class AlertActions: AlerActionProtocol{
     
     private init(){}
     static let shared = AlertActions()
