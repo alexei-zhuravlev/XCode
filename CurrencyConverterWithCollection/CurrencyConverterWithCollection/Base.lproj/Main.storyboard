@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lE3-Qk-6Lg">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Currencies ChoosingVC-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="CurrenciesChoosingVC" id="BYZ-38-t0r" customClass="CurrenciesChoosingVC" customModule="CurrencyConverterWithCollection" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Укажите пару валют" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8dD-au-XYo">
+                                <rect key="frame" x="20" y="54" width="374" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="40G-HP-DDR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CFB-4x-HF9">
+                                <rect key="frame" x="20" y="145" width="374" height="697"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oiY-ab-4Jo">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MyCollectionCell" id="VHN-32-Ten" customClass="MyCollectionCell" customModule="CurrencyConverterWithCollection" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="BVB-wp-S7w">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z25-4E-DMd">
+                                                    <rect key="frame" x="29" y="49" width="70" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="WIk-FJ-F3U"/>
+                                                        <constraint firstAttribute="height" constant="30" id="eu7-cP-CzF"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="z25-4E-DMd" firstAttribute="centerX" secondItem="BVB-wp-S7w" secondAttribute="centerX" id="FcH-KE-Kds"/>
+                                                <constraint firstItem="z25-4E-DMd" firstAttribute="centerY" secondItem="BVB-wp-S7w" secondAttribute="centerY" id="gbg-eb-imA"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="currencyBtn" destination="z25-4E-DMd" id="rAw-x8-b3e"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выбраны " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3R3-Ah-qIV">
+                                <rect key="frame" x="20" y="104" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3R3-Ah-qIV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="5pW-pF-bZ8"/>
+                            <constraint firstItem="8dD-au-XYo" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="NkB-8h-aSk"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3R3-Ah-qIV" secondAttribute="trailing" constant="20" id="OlB-RO-noz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8dD-au-XYo" secondAttribute="trailing" constant="20" id="Qsg-ZO-ZRh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="CFB-4x-HF9" secondAttribute="bottom" constant="20" id="VD7-9g-Nlw"/>
+                            <constraint firstItem="CFB-4x-HF9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="dc4-sD-ARw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="CFB-4x-HF9" secondAttribute="trailing" constant="20" id="i0o-5y-fFg"/>
+                            <constraint firstItem="CFB-4x-HF9" firstAttribute="top" secondItem="3R3-Ah-qIV" secondAttribute="bottom" constant="20" id="p5m-i6-x7U"/>
+                            <constraint firstItem="8dD-au-XYo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="qU1-t2-hUP"/>
+                            <constraint firstItem="3R3-Ah-qIV" firstAttribute="top" secondItem="8dD-au-XYo" secondAttribute="bottom" constant="20" id="yUU-Sj-Vez"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="CDe-V9-yvG"/>
+                    <connections>
+                        <outlet property="currenciesChoosingLabel" destination="3R3-Ah-qIV" id="JWM-QO-VRz"/>
+                        <outlet property="currenciesCollection" destination="CFB-4x-HF9" id="gPI-Q6-PAI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="114.50892857142857"/>
+        </scene>
+        <!--MainVC-->
+        <scene sceneID="bLw-u9-ed6">
+            <objects>
+                <viewController storyboardIdentifier="MainVC" id="lE3-Qk-6Lg" customClass="MainVC" customModule="CurrencyConverterWithCollection" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JRf-Ln-MwZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Курс Валют" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCB-gp-o5H">
+                                <rect key="frame" x="20" y="64" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yNN-io-IBW">
+                                <rect key="frame" x="167" y="146" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="M5B-Fg-7G7"/>
+                                    <constraint firstAttribute="width" constant="80" id="vUh-FU-ljB"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button" image="plusBtn"/>
+                                <connections>
+                                    <action selector="addingPairofCurrenciesBtnPressed:" destination="lE3-Qk-6Lg" eventType="touchUpInside" id="roR-U1-A2f"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Добавить валютную пару" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ou1-d9-uYN">
+                                <rect key="frame" x="20" y="105" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="k0X-3F-SKn">
+                                <rect key="frame" x="10" y="246" width="394" height="606"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyCurrencyPairCell" id="POt-fL-A8v" customClass="MyCurrencyPairCell" customModule="CurrencyConverterWithCollection" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="394" height="43"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="POt-fL-A8v" id="6yM-K5-GdJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="394" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjk-YB-w68">
+                                                    <rect key="frame" x="20" y="11" width="354" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="mjk-YB-w68" secondAttribute="trailing" id="BRy-4d-Csz"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="mjk-YB-w68" secondAttribute="bottom" id="SCO-NQ-1PX"/>
+                                                <constraint firstItem="mjk-YB-w68" firstAttribute="top" secondItem="6yM-K5-GdJ" secondAttribute="topMargin" id="VeH-y6-gx2"/>
+                                                <constraint firstItem="mjk-YB-w68" firstAttribute="leading" secondItem="6yM-K5-GdJ" secondAttribute="leadingMargin" id="qGN-zw-1hp"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="choosedCurreniesPairRate" destination="mjk-YB-w68" id="mHu-Xa-9vg"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="24r-Ct-Df3"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="k0X-3F-SKn" firstAttribute="leading" secondItem="24r-Ct-Df3" secondAttribute="leading" constant="10" id="1Ug-N8-9z5"/>
+                            <constraint firstItem="Ou1-d9-uYN" firstAttribute="top" secondItem="tCB-gp-o5H" secondAttribute="bottom" constant="20" id="3tB-UV-jy0"/>
+                            <constraint firstItem="tCB-gp-o5H" firstAttribute="leading" secondItem="24r-Ct-Df3" secondAttribute="leading" constant="20" id="CyH-rk-sOl"/>
+                            <constraint firstItem="k0X-3F-SKn" firstAttribute="top" secondItem="yNN-io-IBW" secondAttribute="bottom" constant="20" id="Dd6-Qi-KzX"/>
+                            <constraint firstItem="yNN-io-IBW" firstAttribute="top" secondItem="Ou1-d9-uYN" secondAttribute="bottom" constant="20" id="KYG-UE-Hix"/>
+                            <constraint firstItem="24r-Ct-Df3" firstAttribute="bottom" secondItem="k0X-3F-SKn" secondAttribute="bottom" constant="10" id="LRx-z9-6Dq"/>
+                            <constraint firstItem="yNN-io-IBW" firstAttribute="centerX" secondItem="JRf-Ln-MwZ" secondAttribute="centerX" id="NRg-Oe-jwp"/>
+                            <constraint firstItem="24r-Ct-Df3" firstAttribute="trailing" secondItem="tCB-gp-o5H" secondAttribute="trailing" constant="20" id="g1T-FW-O6D"/>
+                            <constraint firstItem="Ou1-d9-uYN" firstAttribute="leading" secondItem="24r-Ct-Df3" secondAttribute="leading" constant="20" id="lId-fG-gPo"/>
+                            <constraint firstItem="24r-Ct-Df3" firstAttribute="trailing" secondItem="Ou1-d9-uYN" secondAttribute="trailing" constant="20" id="or5-6m-nX1"/>
+                            <constraint firstItem="24r-Ct-Df3" firstAttribute="trailing" secondItem="k0X-3F-SKn" secondAttribute="trailing" constant="10" id="sEi-Qd-iuF"/>
+                            <constraint firstItem="tCB-gp-o5H" firstAttribute="top" secondItem="24r-Ct-Df3" secondAttribute="top" constant="20" id="vmd-x1-bUg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="9Mg-Fb-WrV"/>
+                    <connections>
+                        <outlet property="currenciesRateTableView" destination="k0X-3F-SKn" id="Soj-0A-Gmc"/>
+                        <outlet property="mainTitleLabel" destination="tCB-gp-o5H" id="NpY-de-wfd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oW6-gF-qRQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="244.92753623188409" y="114.50892857142857"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="plusBtn" width="512" height="512"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
