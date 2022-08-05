@@ -22,6 +22,7 @@
 		D4EA8985289ACCF100E07D49 /* SavingItemToStorageDelegat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA8984289ACCF100E07D49 /* SavingItemToStorageDelegat.swift */; };
 		D4EA8987289ACD9200E07D49 /* StorageOfNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA8986289ACD9200E07D49 /* StorageOfNews.swift */; };
 		D4EA8989289ACE2500E07D49 /* GettingNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA8988289ACE2500E07D49 /* GettingNews.swift */; };
+		D4EA89CD289D86E400E07D49 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA89CC289D86E400E07D49 /* Controller.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		D4EA8984289ACCF100E07D49 /* SavingItemToStorageDelegat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingItemToStorageDelegat.swift; sourceTree = "<group>"; };
 		D4EA8986289ACD9200E07D49 /* StorageOfNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageOfNews.swift; sourceTree = "<group>"; };
 		D4EA8988289ACE2500E07D49 /* GettingNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GettingNews.swift; sourceTree = "<group>"; };
+		D4EA89CC289D86E400E07D49 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		DC36F8748B6F2E9BE7286D7B /* Pods_37_7_News_Reader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_37_7_News_Reader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6840755FDFB7358EEA2E4C9 /* Pods-37_7_News_Reader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-37_7_News_Reader.debug.xcconfig"; path = "Target Support Files/Pods-37_7_News_Reader/Pods-37_7_News_Reader.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,6 +90,7 @@
 		D4EA895E289AB81C00E07D49 /* 37_7_News_Reader */ = {
 			isa = PBXGroup;
 			children = (
+				D4EA89CB289D86C700E07D49 /* Controller */,
 				D4EA8981289ACC0A00E07D49 /* Protocols */,
 				D4EA897A289ABAF300E07D49 /* Storage */,
 				D4EA8979289ABAD300E07D49 /* Networking */,
@@ -145,6 +148,14 @@
 				D4EA8984289ACCF100E07D49 /* SavingItemToStorageDelegat.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		D4EA89CB289D86C700E07D49 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D4EA89CC289D86E400E07D49 /* Controller.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		D5358590045A451B8E8775DD /* Frameworks */ = {
@@ -273,6 +284,7 @@
 				D4EA8960289AB81C00E07D49 /* AppDelegate.swift in Sources */,
 				D4EA8962289AB81C00E07D49 /* SceneDelegate.swift in Sources */,
 				D4EA8983289ACCAD00E07D49 /* ItemForStorage.swift in Sources */,
+				D4EA89CD289D86E400E07D49 /* Controller.swift in Sources */,
 				D4EA8985289ACCF100E07D49 /* SavingItemToStorageDelegat.swift in Sources */,
 				D4EA897C289ABC6F00E07D49 /* FirstResult.swift in Sources */,
 				D4EA8977289AB9D000E07D49 /* NewsCell.swift in Sources */,

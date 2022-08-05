@@ -16,8 +16,7 @@ class Request{
     
     func getRequest(complition:@escaping()->()){
         let url = URL(string: "https://newsapi.org/v2/everything?q=education&apiKey=147c78945012418fb406052d7684132b")!
-        
-        let storage = StorageOfTheNews()
+
         
         AF.request(url).responseJSON { response in
             switch response.result{
@@ -36,7 +35,8 @@ class Request{
                     print(item.imageUrl)
                     print("_______________")
 //                storage.savingNewsToNewsArray(item: item)
-                StorageOfTheNews.shared.savingNewsToNewsArray(item: item)
+                    Controller.shared.storage.savingNewsToNewsArray(item: item)
+//                StorageOfTheNews.shared.savingNewsToNewsArray(item: item)
 
             }
             complition()

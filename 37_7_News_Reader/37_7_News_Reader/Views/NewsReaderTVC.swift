@@ -10,7 +10,7 @@ import SDWebImage
 
 class NewsReaderTVC: UITableViewController {
     
-    let storage = StorageOfTheNews.shared
+    let storage = Controller.shared.storage
     let request = Request()
     
     var newsArray = [NewsItem]()
