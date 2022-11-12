@@ -7,6 +7,8 @@
 
 import UIKit
 
+let color1 = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+
 class MainViewController: UIViewController {
     
     var testArray = [TestModel(testPic: "image1", testTitle: "Фильм1", testYear: "2001", testRating: "4,7"),
@@ -35,6 +37,10 @@ class MainViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         searchBar.delegate = self
+        
+        let xibCell = UINib(nibName: "FilmCollectionViewCell", bundle: nil)
+        collectionView.register(xibCell, forCellWithReuseIdentifier: "FilmCell")
+        collectionView.reloadData()
     }
 
 
@@ -50,6 +56,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilmCell", for: indexPath) as? FilmCollectionViewCell else { return UICollectionViewCell()}
         
         cell.posterPreviewImageView.image = UIImage(named: testArray[indexPath.row].testPic ?? "image1")
+        cell.posterPreviewImageView.layer.cornerRadius = 12
         cell.filmTitleLabel.text = testArray[indexPath.row].testTitle ?? "unknown"
         cell.releaseYearLabel.text = testArray[indexPath.row].testYear ?? "unknown"
         cell.ratingLabel.text = testArray[indexPath.row].testRating ?? "unknown"
