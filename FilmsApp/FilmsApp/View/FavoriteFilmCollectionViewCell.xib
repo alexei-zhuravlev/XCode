@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FavoritFilmCell" id="kvc-M3-rJm" customClass="FavoriteFilmCollectionViewCell" customModule="FilmsApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="191" height="351"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ild-fN-2tS">
+                <rect key="frame" x="0.0" y="0.0" width="191" height="351"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GPK-up-grg">
+                        <rect key="frame" x="7" y="2" width="177" height="236.66666666666666"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="236.66999999999999" id="TGr-lk-hpf"/>
+                            <constraint firstAttribute="width" priority="999" constant="156" id="W9N-1K-fZV"/>
+                            <constraint firstAttribute="height" priority="999" constant="236.5" id="XIj-bs-uqG"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="161" id="bJb-PK-ahH"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Название фильма" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCb-u4-YNN">
+                        <rect key="frame" x="7" y="243.66666666666666" width="177" height="20.333333333333343"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рейтинг" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hq9-Zo-8JZ">
+                        <rect key="frame" x="7" y="282.33333333333331" width="177" height="14.333333333333314"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Год выпуска" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="co2-Lf-T9k">
+                        <rect key="frame" x="7" y="266" width="177" height="14.333333333333314"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWp-iP-dwd">
+                        <rect key="frame" x="71.666666666666671" y="306.66666666666669" width="48" height="35"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="trash.fill" catalog="system"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="GPK-up-grg" firstAttribute="top" secondItem="ild-fN-2tS" secondAttribute="top" constant="2" id="6Km-kL-kC5"/>
+                    <constraint firstItem="pCb-u4-YNN" firstAttribute="leading" secondItem="ild-fN-2tS" secondAttribute="leading" constant="7" id="6pD-EK-Jji"/>
+                    <constraint firstAttribute="trailing" secondItem="pCb-u4-YNN" secondAttribute="trailing" constant="7" id="BUP-3W-SWO"/>
+                    <constraint firstItem="cWp-iP-dwd" firstAttribute="top" secondItem="Hq9-Zo-8JZ" secondAttribute="bottom" constant="10" id="Mu3-cE-pnV"/>
+                    <constraint firstAttribute="trailing" secondItem="GPK-up-grg" secondAttribute="trailing" constant="7" id="SOB-Mu-kjK"/>
+                    <constraint firstItem="pCb-u4-YNN" firstAttribute="top" secondItem="GPK-up-grg" secondAttribute="bottom" constant="5" id="eV5-AM-4OU"/>
+                    <constraint firstItem="co2-Lf-T9k" firstAttribute="top" secondItem="pCb-u4-YNN" secondAttribute="bottom" constant="2" id="ecE-Eh-4Fz"/>
+                    <constraint firstItem="Hq9-Zo-8JZ" firstAttribute="leading" secondItem="ild-fN-2tS" secondAttribute="leading" constant="7" id="g2n-8d-9NQ"/>
+                    <constraint firstItem="co2-Lf-T9k" firstAttribute="top" secondItem="pCb-u4-YNN" secondAttribute="bottom" constant="2" id="hIF-qv-7QO"/>
+                    <constraint firstItem="Hq9-Zo-8JZ" firstAttribute="top" secondItem="co2-Lf-T9k" secondAttribute="bottom" constant="2" id="ibT-Mn-nic"/>
+                    <constraint firstAttribute="trailing" secondItem="co2-Lf-T9k" secondAttribute="trailing" constant="7" id="ixC-Ib-3Ph"/>
+                    <constraint firstItem="co2-Lf-T9k" firstAttribute="leading" secondItem="ild-fN-2tS" secondAttribute="leading" constant="7" id="lHr-f8-agy"/>
+                    <constraint firstItem="Hq9-Zo-8JZ" firstAttribute="top" secondItem="co2-Lf-T9k" secondAttribute="bottom" constant="2" id="lbN-Rg-CIo"/>
+                    <constraint firstItem="GPK-up-grg" firstAttribute="leading" secondItem="ild-fN-2tS" secondAttribute="leading" constant="7" id="pCh-L1-vKj"/>
+                    <constraint firstAttribute="trailing" secondItem="Hq9-Zo-8JZ" secondAttribute="trailing" constant="7" id="pPs-dU-MpW"/>
+                    <constraint firstItem="cWp-iP-dwd" firstAttribute="centerX" secondItem="ild-fN-2tS" secondAttribute="centerX" id="toF-cw-w36"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="191" height="351"/>
+            <connections>
+                <outlet property="favFilmPoster" destination="GPK-up-grg" id="U01-yb-Cwg"/>
+                <outlet property="favFilmRating" destination="Hq9-Zo-8JZ" id="JdL-G6-zhR"/>
+                <outlet property="favFilmTitle" destination="pCb-u4-YNN" id="ngm-GD-1VD"/>
+                <outlet property="favFilmYear" destination="co2-Lf-T9k" id="c4g-rk-46W"/>
+            </connections>
+            <point key="canvasLocation" x="-382.44274809160305" y="-125.70422535211269"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="trash.fill" catalog="system" width="119" height="128"/>
+    </resources>
+</document>
