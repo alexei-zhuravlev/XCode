@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 let color1 = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
 
@@ -20,6 +21,21 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let realm = try? Realm()
+        let filmObiect = FilmObject()
+        
+        do {
+        try realm?.write{
+        realm?.add(filmObiect)
+        }
+        }catch{
+            print("\(error.localizedDescription)")
+        }
+        
+
+        
+        
         model.newTestArray = model.testArray
         
         model.ratingSort()

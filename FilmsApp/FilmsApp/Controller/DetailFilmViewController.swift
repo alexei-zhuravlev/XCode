@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class DetailFilmViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
@@ -25,8 +26,13 @@ class DetailFilmViewController: UIViewController, UIViewControllerTransitioningD
     
     var cameFromFav: Bool = Bool()
     
+    var shotsArray = ["image1","image2","image3","image4"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        collectionOfPics.delegate = self
+        collectionOfPics.dataSource = self
         
         if cameFromFav{
             filmPoster.image = UIImage(named: Model().likedFilms[receivedIndex].testPic ?? "image1")
@@ -78,4 +84,28 @@ class DetailFilmViewController: UIViewController, UIViewControllerTransitioningD
     @IBAction func addToFavsBTNPressed(_ sender: Any) {
         Model().testArray[receivedIndex].isLiked = true
     }
+    
+    @IBAction func toFullPicsViewBtnPressed(_ sender: UIButton) {
+        guard let destViewController = storyboard?.instantiateViewController(withIdentifier: "FilmPicsViewController") as? FilmPicsViewController else {return}
+        
+        destViewController.shotsFromFilmArray = shotsArray
+        navigationController?.pushViewController(destViewController, animated: true)
+    }
+    
+}
+
+extension DetailFilmViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionOfPics.dequeueReusableCell(withReuseIdentifier: "ShotsFromMovieCVC", for: indexPath) as? ShotsFromMovieCVC else {return UICollectionViewCell()}
+        
+        cell.shotImage.image = UIImage(named: shotsArray[indexPath.row])
+        return cell
+    }
+    
+    
 }
