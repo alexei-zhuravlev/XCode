@@ -10,6 +10,10 @@ import RealmSwift
 
 class PosterFullViewController: UIViewController {
     
+    let model = Model()
+    
+    var filmId:Int = Int()
+    
     @IBOutlet weak var filmPosterFull: UIImageView!
     @IBOutlet weak var closeButton: UIButton!
     
@@ -19,10 +23,13 @@ class PosterFullViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        filmPosterFull.image = UIImage(named: testArray[detailIndexPath].testPic ?? "image1")
+        model.readRealmData()
+        
+        let film = model.filmObjects?.filter("id == \(filmId)").first
+        
+        filmPosterFull.image = UIImage(named: film?.filmPic ?? "image1")
         
     }
-    
     
     @IBAction func closeButtonPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)

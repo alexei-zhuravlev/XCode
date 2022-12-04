@@ -13,15 +13,14 @@ class FilmCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var filmTitleLabel: UILabel!
     @IBOutlet weak var releaseYearLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
-    
-    var data:Item?{
+  
+    var data:FilmObject?{
         didSet{
-            guard data != nil else { return}
-            posterPreviewImageView.image = UIImage(named: data?.testPic ?? "image1")
-            posterPreviewImageView.layer.cornerRadius = 12
-            filmTitleLabel.text = data?.testTitle
-            releaseYearLabel.text = String(data?.testYear ?? 0)
-            ratingLabel.text = String(data?.testRating ?? 0)
+            guard data != nil else {return}
+            posterPreviewImageView.image = UIImage(named: data?.filmPic ?? "image0")
+            filmTitleLabel.text = data?.filmTitle
+            releaseYearLabel.text = String(data?.releaseYear ?? 0)
+            ratingLabel.text = String(data?.filmRating ?? 0)
         }
     }
 }

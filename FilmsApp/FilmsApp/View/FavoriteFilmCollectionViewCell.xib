@@ -47,6 +47,9 @@
                         <rect key="frame" x="71.666666666666671" y="306.66666666666669" width="48" height="35"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" image="trash.fill" catalog="system"/>
+                        <connections>
+                            <action selector="removeFromFavoritesBtnPressed:" destination="kvc-M3-rJm" eventType="touchUpInside" id="hX6-GD-k7M"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -74,6 +77,7 @@
                 <outlet property="favFilmRating" destination="Hq9-Zo-8JZ" id="JdL-G6-zhR"/>
                 <outlet property="favFilmTitle" destination="pCb-u4-YNN" id="ngm-GD-1VD"/>
                 <outlet property="favFilmYear" destination="co2-Lf-T9k" id="c4g-rk-46W"/>
+                <outlet property="removeFromFavsBtn" destination="cWp-iP-dwd" id="byd-Kd-GRl"/>
             </connections>
             <point key="canvasLocation" x="-382.44274809160305" y="-125.70422535211269"/>
         </collectionViewCell>

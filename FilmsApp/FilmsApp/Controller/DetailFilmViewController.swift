@@ -19,14 +19,17 @@ class DetailFilmViewController: UIViewController, UIViewControllerTransitioningD
     @IBOutlet weak var filmDescription: UITextView!
     @IBOutlet weak var addToFavorites: UIButton!
     
+    let model = Model()
     
     var receivedIndex:Int = Int()
     
     var transition: RoundingTransition = RoundingTransition()
     
-    var cameFromFav: Bool = Bool()
-    
     var shotsArray = ["image1","image2","image3","image4"]
+    
+    var item:Results<FilmObject>?
+    
+    var filmID:Int = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,24 +37,20 @@ class DetailFilmViewController: UIViewController, UIViewControllerTransitioningD
         collectionOfPics.delegate = self
         collectionOfPics.dataSource = self
         
-        if cameFromFav{
-            filmPoster.image = UIImage(named: Model().likedFilms[receivedIndex].testPic ?? "image1")
-            filmTitle.text = Model().likedFilms[receivedIndex].testTitle
-            filmReleaseYear.text = "\(String(describing: Model().likedFilms[receivedIndex].testYear!))"
-            filmRating.text = "\(String(describing: Model().likedFilms[receivedIndex].testRating!))"
-            addToFavorites.setImage(UIImage(systemName: "trash.fill"), for: .normal)
-        } else{
-            filmPoster.image = UIImage(named: Model().testArray[receivedIndex].testPic ?? "image1")
-            filmTitle.text = Model().testArray[receivedIndex].testTitle
-            filmReleaseYear.text = "Год выпуска -  \(String(describing: Model().testArray[receivedIndex].testYear!))"
-            filmRating.text = "Рейтинг - \(String(describing: Model().testArray[receivedIndex].testRating!))"
-            if Model().testArray[receivedIndex].isLiked{
+        model.readRealmData()
+        
+        item = model.filmObjects?.filter("id == \(filmID)")
+        let itemForUsing = item?.first
+        
+            filmPoster.image = UIImage(named: itemForUsing?.filmPic ?? "image1")
+            filmTitle.text = itemForUsing?.filmTitle
+            filmReleaseYear.text = "Год выпуска -  \(String(itemForUsing?.releaseYear ?? 0))"
+            filmRating.text = "Рейтинг - \(String(itemForUsing?.filmRating ?? 0))"
+            if itemForUsing?.isLikedByUser == true {
                 addToFavorites.setImage(UIImage(systemName: "trash.fill"), for: .normal)
             }else{
                 addToFavorites.setImage(UIImage(systemName: "heart.fill"), for: .normal)
             }
-            
-        }
     }
     
     func animationController(forPresented presented: UIViewController, presenting:
@@ -74,7 +73,8 @@ class DetailFilmViewController: UIViewController, UIViewControllerTransitioningD
        
         guard segue.identifier == "tappedPoster" else {return}
         guard let destVC = segue.destination as? PosterFullViewController else {return}
-        destVC.detailIndexPath = receivedIndex
+        
+        destVC.filmId = filmID
         
         destVC.transitioningDelegate = self
         destVC.modalPresentationStyle = .custom
@@ -82,7 +82,17 @@ class DetailFilmViewController: UIViewController, UIViewControllerTransitioningD
     }
 
     @IBAction func addToFavsBTNPressed(_ sender: Any) {
-        Model().testArray[receivedIndex].isLiked = true
+        model.readRealmData()
+        item = model.filmObjects?.filter("id == \(filmID)")
+        let itemForUsing = item?.first
+        
+        if itemForUsing?.isLikedByUser == true {
+            model.updateLike(at: filmID)
+            addToFavorites.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        }else{
+            model.updateLike(at: filmID)
+            addToFavorites.setImage(UIImage(systemName: "trash.fill"), for: .normal)
+        }
     }
     
     @IBAction func toFullPicsViewBtnPressed(_ sender: UIButton) {

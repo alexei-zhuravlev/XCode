@@ -114,7 +114,13 @@
                             <constraint firstItem="LDB-vY-xTN" firstAttribute="top" secondItem="1PM-oD-5OG" secondAttribute="top" id="yIo-dY-ZlC"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Избранные фильмы" id="zYo-QG-Byj"/>
+                    <navigationItem key="navigationItem" title="Избранные фильмы" id="zYo-QG-Byj">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="exclamationmark.arrow.circlepath" catalog="system" id="xcS-el-WE2">
+                            <connections>
+                                <action selector="updateBtnPressed:" destination="LGb-yT-6gu" id="LVu-lI-9Xu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="LDB-vY-xTN" id="qII-rh-F6o"/>
                     </connections>
@@ -700,6 +706,7 @@
     <resources>
         <image name="arrow.down" catalog="system" width="118" height="128"/>
         <image name="arrowtriangle.right.fill" catalog="system" width="128" height="113"/>
+        <image name="exclamationmark.arrow.circlepath" catalog="system" width="128" height="112"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="image1" width="411" height="617"/>
         <systemColor name="labelColor">

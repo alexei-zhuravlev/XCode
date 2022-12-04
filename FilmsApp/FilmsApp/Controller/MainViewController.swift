@@ -12,6 +12,8 @@ let color1 = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.30196
 
 class MainViewController: UIViewController {
     
+
+    
     let model = Model ()
     
     var searchController = UISearchController()
@@ -21,24 +23,31 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let realm = try? Realm()
         let filmObiect = FilmObject()
+//        filmObiect.filmRating = 5.6
+//        filmObiect.filmPic = "image10"
+//        filmObiect.id = 10
+//        filmObiect.filmTitle = "Такое"
+//        filmObiect.isLikedByUser = false
+//        filmObiect.releaseYear = 2010
         
-        do {
-        try realm?.write{
-        realm?.add(filmObiect)
-        }
-        }catch{
-            print("\(error.localizedDescription)")
-        }
-        
+        print("&&&&&&&&&&&")
+        print (realm?.configuration.fileURL)
+
+//        do{
+//            try realm?.write{
+//                realm?.add(
+//                    filmObiect
+//                )
+//            }
+//        } catch{
+//            print("\(error.localizedDescription)")
+//        }
 
         
-        
-        model.newTestArray = model.testArray
-        
-        model.ratingSort()
+        model.readRealmData()
+
         collectionView.reloadData()
         
         collectionView.dataSource = self
@@ -69,7 +78,7 @@ class MainViewController: UIViewController {
         // 3. прописываем зависимость изображения от значения sortAscending
         sortingButton.image = model.sortAscending ? arrowUp : arrowDown
         // 4. вызываем метод сортировки
-        model.ratingSort()
+        model.ratingSort(ascending: model.sortAscending)
         // 5. перезагружаем collection view
         collectionView.reloadData()
     }
@@ -80,24 +89,50 @@ class MainViewController: UIViewController {
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return model.newTestArray.count
+        guard let filmObjectsNumber = model.arrayHelper?.count else {return Int()}
+
+        return filmObjectsNumber
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilmCell", for: indexPath) as? FilmCollectionViewCell else { return UICollectionViewCell()}
-        
-        cell.data = self.model.newTestArray[indexPath.item]
+
+        cell.data = self.model.arrayHelper?[indexPath.item]
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let destViewController = storyboard?.instantiateViewController(withIdentifier: "DetailFilmViewControllerS") as? DetailFilmViewController else {return}
-        
-        destViewController.receivedIndex = model.newTestArray[indexPath.row].id ?? 0
+
+        destViewController.filmID = (model.arrayHelper?[indexPath.item].id)!
         
         navigationController?.pushViewController(destViewController, animated: true)
         
+    }
+    
+    // MARK: - SearchBar Methods
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        model.arrayHelper = model.sortedFilmObjects
+        model.search(searchTextValue: searchText)
+        
+        if searchBar.text?.count == 0{
+            model.arrayHelper = model.sortedFilmObjects
+        }
+        
+        collectionView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        model.arrayHelper = model.sortedFilmObjects
+        
+        if searchBar.text?.count == 0{
+            model.arrayHelper = model.sortedFilmObjects
+        }
+        
+        collectionView.reloadData()
     }
     
 }
