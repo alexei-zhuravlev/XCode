@@ -11,6 +11,8 @@ class FavoriteFilmCollectionViewCell: UICollectionViewCell {
     
     let model = Model()
     
+    var cellIndex: Int?
+    
     @IBOutlet weak var favFilmPoster: UIImageView!
     @IBOutlet weak var favFilmTitle: UILabel!
     @IBOutlet weak var favFilmRating: UILabel!
@@ -30,9 +32,18 @@ class FavoriteFilmCollectionViewCell: UICollectionViewCell {
     
 
     @IBAction func removeFromFavoritesBtnPressed(_ sender: Any) {
-        guard let likeData = data else {return}
-        removeFromFavsBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-        model.updateLike(at: likeData.id)
+        // разворачиваем опционал
+        guard let likedData = data else {
+            return
+        }
+        // вызываем метод updateLike
+        model.updateLike(at: likedData.id)
+        // изменяем вид ячейки
+        if alpha == 0.55 {
+            alpha = 1
+        } else if alpha == 1 {
+            alpha = 0.55
+        }
     }
     
 }

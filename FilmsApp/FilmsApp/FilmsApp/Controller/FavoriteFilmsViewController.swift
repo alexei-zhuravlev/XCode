@@ -17,11 +17,11 @@ class FavoriteFilmsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        model.readRealmData()
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        model.showLikedFilms()
         
         let xibCell = UINib(nibName: "FavoriteFilmCollectionViewCell", bundle: nil)
         collectionView.register(xibCell, forCellWithReuseIdentifier: "FavoritFilmCell")
@@ -40,21 +40,27 @@ extension FavoriteFilmsViewController: UICollectionViewDelegate, UICollectionVie
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return model.likedFilms?.count ?? 0
+        return model.likedFilmObjects?.count ?? 0 // новый массив здесь
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritFilmCell", for: indexPath) as? FavoriteFilmCollectionViewCell else { return UICollectionViewCell()}
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritFilmCell", for: indexPath) as? FavoriteFilmCollectionViewCell,
+              
+              let likedItem = model.likedFilmObjects?[indexPath.item] else {
+            return UICollectionViewCell()
+        }
         
-        cell.data = model.likedFilms?[indexPath.item]
-
+        cell.data = likedItem
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let destViewController = storyboard?.instantiateViewController(withIdentifier: "DetailFilmViewControllerS") as? DetailFilmViewController else {return}
-
-        destViewController.filmID = (model.likedFilms?[indexPath.row].id)!
+        guard let destViewController = storyboard?.instantiateViewController(withIdentifier: "DetailFilmViewControllerS") as? DetailFilmViewController else {
+            return
+        }
+        
+        destViewController.receivedIndex = model.likedFilmObjects?[indexPath.row].id ?? 0
         
         navigationController?.pushViewController(destViewController, animated: true)
         

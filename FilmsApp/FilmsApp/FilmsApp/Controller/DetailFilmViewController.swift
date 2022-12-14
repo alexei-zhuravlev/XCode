@@ -19,7 +19,7 @@ class DetailFilmViewController: UIViewController, UIViewControllerTransitioningD
     @IBOutlet weak var filmDescription: UITextView!
     @IBOutlet weak var addToFavorites: UIButton!
     
-    let model = Model()
+    var model = Model()
     
     var receivedIndex:Int = Int()
     
@@ -37,20 +37,36 @@ class DetailFilmViewController: UIViewController, UIViewControllerTransitioningD
         collectionOfPics.delegate = self
         collectionOfPics.dataSource = self
         
-        model.readRealmData()
+        collectionOfPics.layer.borderWidth = 2.4
+        collectionOfPics.layer.borderColor = UIColor.darkGray.cgColor
         
-        item = model.filmObjects?.filter("id == \(filmID)")
-        let itemForUsing = item?.first
+        DispatchQueue.main.async {
+            self.item = self.model.filmObjects?.filter("id == \(self.filmID)")
+            let itemForUsing = self.item?.first
+            
+            self.filmPoster.image = UIImage(named: itemForUsing?.filmPic ?? "image1")
+            self.filmTitle.text = itemForUsing?.filmTitle
+            self.filmReleaseYear.text = "Год выпуска -  \(String(itemForUsing?.releaseYear ?? 0))"
+            self.filmRating.text = "Рейтинг - \(String(itemForUsing?.filmRating ?? 0))"
+                if itemForUsing?.isLikedByUser == true {
+                    self.addToFavorites.setImage(UIImage(systemName: "trash.fill"), for: .normal)
+                }else{
+                    self.addToFavorites.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                }
+        }
         
-            filmPoster.image = UIImage(named: itemForUsing?.filmPic ?? "image1")
-            filmTitle.text = itemForUsing?.filmTitle
-            filmReleaseYear.text = "Год выпуска -  \(String(itemForUsing?.releaseYear ?? 0))"
-            filmRating.text = "Рейтинг - \(String(itemForUsing?.filmRating ?? 0))"
-            if itemForUsing?.isLikedByUser == true {
-                addToFavorites.setImage(UIImage(systemName: "trash.fill"), for: .normal)
-            }else{
-                addToFavorites.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            }
+//        item = model.filmObjects?.filter("id == \(filmID)")
+//        let itemForUsing = item?.first
+//
+//            filmPoster.image = UIImage(named: itemForUsing?.filmPic ?? "image1")
+//            filmTitle.text = itemForUsing?.filmTitle
+//            filmReleaseYear.text = "Год выпуска -  \(String(itemForUsing?.releaseYear ?? 0))"
+//            filmRating.text = "Рейтинг - \(String(itemForUsing?.filmRating ?? 0))"
+//            if itemForUsing?.isLikedByUser == true {
+//                addToFavorites.setImage(UIImage(systemName: "trash.fill"), for: .normal)
+//            }else{
+//                addToFavorites.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+//            }
     }
     
     func animationController(forPresented presented: UIViewController, presenting:
@@ -82,7 +98,7 @@ class DetailFilmViewController: UIViewController, UIViewControllerTransitioningD
     }
 
     @IBAction func addToFavsBTNPressed(_ sender: Any) {
-        model.readRealmData()
+
         item = model.filmObjects?.filter("id == \(filmID)")
         let itemForUsing = item?.first
         

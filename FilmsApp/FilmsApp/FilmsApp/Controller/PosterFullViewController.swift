@@ -23,12 +23,10 @@ class PosterFullViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        model.readRealmData()
-        
         let film = model.filmObjects?.filter("id == \(filmId)").first
-        
+
         filmPosterFull.image = UIImage(named: film?.filmPic ?? "image1")
-        
+//        filmPosterFull.image = UIImage(named: model.filmObjects?[detailIndexPath].filmPic ?? "image0")
     }
     
     @IBAction func closeButtonPressed(_ sender: UIButton) {
