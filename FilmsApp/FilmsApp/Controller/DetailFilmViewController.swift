@@ -21,15 +21,22 @@ class DetailFilmViewController: UIViewController, UIViewControllerTransitioningD
     
     var model = Model()
     
+    var urlService = URLService()
+    var address = "https://image.tmdb.org/t/p/w500"
+    
     var receivedIndex:Int = Int()
     
     var transition: RoundingTransition = RoundingTransition()
     
-    var shotsArray = ["image1","image2","image3","image4"]
+//    var shotsArray = ["image1","image2","image3","image4"]
+    
+//    var screenshotsArray: [String] = []
     
     var item:Results<FilmObject>?
     
     var filmID:Int = Int()
+    
+    var cameFromFavs:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,33 +47,41 @@ class DetailFilmViewController: UIViewController, UIViewControllerTransitioningD
         collectionOfPics.layer.borderWidth = 2.4
         collectionOfPics.layer.borderColor = UIColor.darkGray.cgColor
         
+//        проверяем нет ли фильма в списке "любимых" (проверка по ID)
+        if model.likedFilmObjects?.filter("id == \(self.filmID)").first != nil{
+            cameFromFavs = true
+        }
+        
         DispatchQueue.main.async {
+
             self.item = self.model.filmObjects?.filter("id == \(self.filmID)")
+            
+            
+            guard let unwrFilmPic = self.item?.first?.filmPic,
+                  let posterURL = URL(string: self.address + unwrFilmPic) else {return}
+            
+            self.urlService.getSetPoster(withURL: posterURL) { image in
+                self.filmPoster.image = image
+            }
+                    
             let itemForUsing = self.item?.first
             
-            self.filmPoster.image = UIImage(named: itemForUsing?.filmPic ?? "image1")
             self.filmTitle.text = itemForUsing?.filmTitle
             self.filmReleaseYear.text = "Год выпуска -  \(String(itemForUsing?.releaseYear ?? 0))"
             self.filmRating.text = "Рейтинг - \(String(itemForUsing?.filmRating ?? 0))"
-                if itemForUsing?.isLikedByUser == true {
+            if self.cameFromFavs == true {
                     self.addToFavorites.setImage(UIImage(systemName: "trash.fill"), for: .normal)
                 }else{
                     self.addToFavorites.setImage(UIImage(systemName: "heart.fill"), for: .normal)
                 }
-        }
-        
-//        item = model.filmObjects?.filter("id == \(filmID)")
-//        let itemForUsing = item?.first
-//
-//            filmPoster.image = UIImage(named: itemForUsing?.filmPic ?? "image1")
-//            filmTitle.text = itemForUsing?.filmTitle
-//            filmReleaseYear.text = "Год выпуска -  \(String(itemForUsing?.releaseYear ?? 0))"
-//            filmRating.text = "Рейтинг - \(String(itemForUsing?.filmRating ?? 0))"
-//            if itemForUsing?.isLikedByUser == true {
-//                addToFavorites.setImage(UIImage(systemName: "trash.fill"), for: .normal)
-//            }else{
-//                addToFavorites.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            self.filmDescription.text = itemForUsing?.overview ?? "N/A"
+            
+//            if let testArray = itemForUsing?.screenshots{
+//                for el in testArray{
+//                    self.screenshotsArray.append(el)
+//                }
 //            }
+        }
     }
     
     func animationController(forPresented presented: UIViewController, presenting:
@@ -99,22 +114,26 @@ class DetailFilmViewController: UIViewController, UIViewControllerTransitioningD
 
     @IBAction func addToFavsBTNPressed(_ sender: Any) {
 
-        item = model.filmObjects?.filter("id == \(filmID)")
-        let itemForUsing = item?.first
-        
-        if itemForUsing?.isLikedByUser == true {
-            model.updateLike(at: filmID)
+        if cameFromFavs{
+            model.deleteLikedItem(at: filmID)
             addToFavorites.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            cameFromFavs = false
         }else{
             model.updateLike(at: filmID)
             addToFavorites.setImage(UIImage(systemName: "trash.fill"), for: .normal)
+            cameFromFavs = true
         }
     }
     
     @IBAction func toFullPicsViewBtnPressed(_ sender: UIButton) {
         guard let destViewController = storyboard?.instantiateViewController(withIdentifier: "FilmPicsViewController") as? FilmPicsViewController else {return}
         
-        destViewController.shotsFromFilmArray = shotsArray
+//        destViewController.shotsFromFilmArray = shotsArray
+        if let arrayToSend = self.model.filmObjects?.filter("id == \(self.filmID)").first?.screenshots{
+            for el in arrayToSend {
+                destViewController.shotsFromFilmArray.append(el)
+            }
+        }
         navigationController?.pushViewController(destViewController, animated: true)
     }
     
@@ -123,13 +142,23 @@ class DetailFilmViewController: UIViewController, UIViewControllerTransitioningD
 extension DetailFilmViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        self.item = self.model.filmObjects?.filter("id == \(self.filmID)")
+        return self.item?.first?.screenshots.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionOfPics.dequeueReusableCell(withReuseIdentifier: "ShotsFromMovieCVC", for: indexPath) as? ShotsFromMovieCVC else {return UICollectionViewCell()}
         
-        cell.shotImage.image = UIImage(named: shotsArray[indexPath.row])
+        let movie = self.model.filmObjects?.filter("id == \(self.filmID)").first
+        
+        if !(movie?.screenshots.isEmpty)!{
+            guard let screenshotURLString = movie?.screenshots[indexPath.row] else { return UICollectionViewCell()}
+            if let screenshotURL = URL(string: (self.address + screenshotURLString)){
+                self.urlService.getSetPoster(withURL: screenshotURL) { image in
+                    cell.shotImage.image = image
+                }
+            }
+        }
         return cell
     }
     

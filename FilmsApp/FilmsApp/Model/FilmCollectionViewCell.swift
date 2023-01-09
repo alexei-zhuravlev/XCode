@@ -13,13 +13,27 @@ class FilmCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var filmTitleLabel: UILabel!
     @IBOutlet weak var releaseYearLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
+    
+    var address = "https://image.tmdb.org/t/p/w500"
+    
+    let urlServise = URLService()
+    let model = Model()
+    
   
     var data:FilmObject?{
         didSet {
-            guard let unwrData = data else {
+            guard let unwrData = data, let url = URL(string: address + unwrData.filmPic) else {
                 return
             }
-            posterPreviewImageView.image = UIImage(named: unwrData.filmPic)
+            DispatchQueue.main.async {
+                self.urlServise.getSetPoster(withURL: url) { image in
+                    self.posterPreviewImageView.image = image
+                }
+            }
+//            urlServise.getSetPoster(withURL: url) { image in
+//                self.posterPreviewImageView.image = image
+//            }
+
             filmTitleLabel.text = unwrData.filmTitle
             releaseYearLabel.text = String(unwrData.releaseYear)
             ratingLabel.text = String(unwrData.filmRating)

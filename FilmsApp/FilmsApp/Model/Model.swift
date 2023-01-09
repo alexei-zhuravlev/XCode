@@ -17,7 +17,10 @@ class Model{
         return realm?.objects(FilmObject.self)
     }
     
-    var likedFilmObjects: Results<FilmObject>?
+    var likedFilmObjects: Results<LikedFilmObiect>? {
+        return realm?.objects(LikedFilmObiect.self)
+    }
+    
     
     var arrayHelper: Results<FilmObject>?
     
@@ -33,23 +36,60 @@ class Model{
 
     }
     
-    func showLikedFilms() {
-        let likeFilter = NSPredicate(format: "isLikedByUser = true")
+    
+    func deleteLikedItem(at item: Int) {
+        do {
+        try realm?.write({
         
-        likedFilmObjects = filmObjects?.filter(likeFilter)
+            if let likedArray = likedFilmObjects, let likedObject = likedFilmObjects?.filter("id == \(item)").first {
+                likedObject.isLikedByUser = !likedObject.isLikedByUser
+                
+                for i in likedArray {
+                    if i.isLikedByUser == false {
+                        realm?.delete(i)
+                    }
+                }
+            }
+        })
+        } catch {
+            print("Error saving done status, \(error)")
+        }
     }
     
     // объявили функцию с входным параметром
     func updateLike(at item: Int) {
+        var localChecker:[FilmObject] = []
         // сделали optional binding для объекта
-        if let film = filmObjects?.filter("id == \(item)").first {
+        if let film = filmObjects?.filter("id == \(item)").first,
+           let array = filmObjects{
+//            let object = LikedFilmObiect()
             // блок do/catch
             do {
                 // запись в объект по "индексу" item
-                try realm?.write {
+                try realm?.write ({
                     // переворачиваем первоначальное значение лайка
                     film.isLikedByUser = !film.isLikedByUser
-                }
+                    
+                    for i in array{
+                        if i.isLikedByUser == true{
+                            localChecker.append(i)
+                        }
+                    }
+//копируем выбранный фильм в БД лайкнутых
+                    for el in localChecker{
+                        let object = LikedFilmObiect()
+                        object.id = el.id
+                        object.filmPic = el.filmPic
+                        object.releaseYear = el.releaseYear
+                        object.filmRating = el.filmRating
+                        object.isLikedByUser = el.isLikedByUser
+                        object.about = el.overview
+                        object.filmTitle = el.filmTitle
+                        object.screenshots = el.screenshots
+                        
+                        realm?.add(object, update: .all)
+                    }
+                })
             } catch {
                 // обрабатываем ошибки
                 print("Error saving done status, \(error)")

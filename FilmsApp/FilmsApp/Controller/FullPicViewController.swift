@@ -12,7 +12,9 @@ class FullPicViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     var shotsArray:[String] = []
-
+    var address = "https://image.tmdb.org/t/p/original"
+    var urlService = URLService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
@@ -30,9 +32,15 @@ extension FullPicViewController:UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FullPicViewControllerCVC", for: indexPath) as? FullPicViewControllerCVC else {return UICollectionViewCell()}
         
-        cell.fullShotsImage.image = UIImage(named: shotsArray[indexPath.row])
-        cell.countOfShot.text = "\((indexPath.row) + 1)/\(shotsArray.count)"
-        
+        if !shotsArray.isEmpty{
+            let screenshotURLString = shotsArray[indexPath.row]
+            if let screenshotURL = URL(string: (self.address + screenshotURLString)){
+                self.urlService.getSetPoster(withURL: screenshotURL) { image in
+                    cell.fullShotsImage.image = image
+                    cell.countOfShot.text = "\((indexPath.row) + 1)/\(self.shotsArray.count)"
+                }
+            }
+        }
         return cell
     }
     

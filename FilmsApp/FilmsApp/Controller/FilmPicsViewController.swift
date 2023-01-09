@@ -15,7 +15,8 @@ class FilmPicsViewController: UIViewController {
     @IBOutlet weak var numbersOfPics: UILabel!
     
     var shotsFromFilmArray:[String] = []
-    
+    var address = "https://image.tmdb.org/t/p/w500"
+    var urlService = URLService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +38,14 @@ extension FilmPicsViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilmPicsViewControllerCVC", for: indexPath) as? FilmPicsViewControllerCVC else {return UICollectionViewCell()}
         
-        cell.shotFromFilmImage.image = UIImage(named: shotsFromFilmArray[indexPath.row])
-        
+        if !shotsFromFilmArray.isEmpty{
+            let screenshotURLString = shotsFromFilmArray[indexPath.row]
+            if let screenshotURL = URL(string: (self.address + screenshotURLString)){
+                self.urlService.getSetPoster(withURL: screenshotURL) { image in
+                    cell.shotFromFilmImage.image = image
+                }
+            }
+        }
         return cell
     }
     

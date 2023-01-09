@@ -21,7 +21,7 @@ class FavoriteFilmsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        model.showLikedFilms()
+//        model.showLikedFilms()
         
         let xibCell = UINib(nibName: "FavoriteFilmCollectionViewCell", bundle: nil)
         collectionView.register(xibCell, forCellWithReuseIdentifier: "FavoritFilmCell")
@@ -59,8 +59,9 @@ extension FavoriteFilmsViewController: UICollectionViewDelegate, UICollectionVie
         guard let destViewController = storyboard?.instantiateViewController(withIdentifier: "DetailFilmViewControllerS") as? DetailFilmViewController else {
             return
         }
-        
-        destViewController.receivedIndex = model.likedFilmObjects?[indexPath.row].id ?? 0
+
+        destViewController.filmID = model.likedFilmObjects?[indexPath.row].id ?? 0
+        destViewController.cameFromFavs = true
         
         navigationController?.pushViewController(destViewController, animated: true)
         

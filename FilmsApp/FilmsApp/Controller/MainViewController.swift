@@ -16,34 +16,24 @@ class MainViewController: UIViewController {
     
     let model = Model ()
     let realm = try? Realm()
+    let service = URLService()
     
     var searchController = UISearchController()
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var sortingButton: UIBarButtonItem!
+    @IBOutlet weak var favBTN: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
-        model.ratingSort()
-        
+//        print("###########")
 //        print(realm?.configuration.fileURL)
         
-//        Тестируем запросы к API TMDB
-        
-        let test = URLService()
-//        сейчас в кино
-        test.nowPlayingFims()
-//        популярные
-        test.popularFilms()
-//        последние
-        test.getLatestFilms()
-//        с высокими оценками
-        test.topRatedFilms()
-//        скоро выйдут
-        test.upcomingFilms()
-//        результаты тестов будут выведены в консоль
 
+        favBTN.accessibilityIdentifier = "FavBTN"
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         
@@ -60,14 +50,14 @@ class MainViewController: UIViewController {
         collectionView.register(xibCell, forCellWithReuseIdentifier: "FilmCell")
  
         DispatchQueue.main.async {
+            self.service.popularFilms()
+            self.model.ratingSort()
             self.collectionView.reloadData()
         }
-//        collectionView.reloadData()
     }
 
     @IBAction func favBTNPressed(_ sender: Any) {
         guard let destViewController = storyboard?.instantiateViewController(withIdentifier: "FavoriteFilmsViewController") as? FavoriteFilmsViewController else {return}
-        
         navigationController?.pushViewController(destViewController, animated: true)
     }
     
@@ -89,7 +79,6 @@ class MainViewController: UIViewController {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
-//        collectionView.reloadData()
     }
     
     
@@ -106,7 +95,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         // развёртываем опционал у arrayHelper, чтобы передавать его в методы ячейки
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilmCell", for: indexPath) as? FilmCollectionViewCell,
-              
               let item = model.arrayHelper?[indexPath.row] else { // вот он [опционал]
            return UICollectionViewCell()
        }

@@ -10,28 +10,50 @@ import UIKit
 
 class URLService{
     let apiKey:String = "f05c1b5b6dd0ebe6d32e2048f4bba2af"
-//    let apiURL:URL
     let session = URLSession.shared
+    let parser = JSONParsingService()
     
-//Функция запроса данных по имеющемуся URL
+    var imageCache = NSCache<NSString, UIImage>()
+    
+//метод запроса данных по имеющемуся URL
     func dataRequest(apiURL:URL){
         let task = session.dataTask(with: apiURL) { data, response, error in
             // data не опционал
             guard let unwrData = data,
-            // data переходит в строку в локальной константе
-                  let dataString = String(data: unwrData, encoding: .utf8),
             // response тайпкастится и проверяется код запроса
                   (response as? HTTPURLResponse)?.statusCode == 200,
             // error проверяется на nil
                    error == nil else {
                return
            }
-            print("#################")
-           print(dataString)
+//            DispatchQueue.main.async {
+//                self.parser.parseJSON(parseData: unwrData, parseError: error)
+//            }
+            self.parser.parseJSON(parseData: unwrData, parseError: error)
         }
         task.resume()
     }
     
+//    Метод для получения массива ссылок на скриншоты фильма
+    
+    func dataBacdropsRequest(movieID: Int, complition:@escaping()->()){
+        let storage = StorageForBackdrops.shared
+        var arrayToStore:[String] = []
+        let backdropURLString = "https://api.themoviedb.org/3/movie/\(movieID)/images?api_key=\(apiKey)&language=en-US&include_image_language=en"
+        let backdropURL = URL(string: backdropURLString)
+        guard let unwrURL = backdropURL else {return}
+        let request = URLRequest(url: unwrURL)
+        let task = session.dataTask(with: request) { data, response, error in
+            guard let unwrData = data,
+            (response as? HTTPURLResponse)?.statusCode == 200,
+             error == nil else {return}
+            arrayToStore = self.parser.parseBackdrops(parseData: unwrData, parseError: error)
+            storage.arrayOfBackdrops = arrayToStore
+            complition()
+        }
+        task.resume()
+
+    }
     
 //Запрос данных для получения списка недавно вышедших фильмов (Latest)
 //    Важно помнить, что в этом списке появятся последние фильмы, выпущенные на английском языке (в качестве одного из языков фильма!)
@@ -76,11 +98,44 @@ class URLService{
         let popularFilmsURLString = "https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)&language=en-US&page=1"
         let popularFilmsURL = URL(string: popularFilmsURLString)
         guard let popularFilmsURL else {return}
-        dataRequest(apiURL: popularFilmsURL)
+        DispatchQueue.main.async {
+            self.dataRequest(apiURL: popularFilmsURL)
+        }
+//        dataRequest(apiURL: popularFilmsURL)
     }
     
-//    init(){
-//        self.apiURL = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)&language=en-US&page=1")!
-//
-//    }
+//    получаем постер фильма
+    func getSetPoster(withURL url:URL, completion: @escaping (UIImage) -> Void){
+        if let cachedImage = imageCache.object(forKey: url.absoluteString as NSString) {
+            completion(cachedImage)
+        } else {
+            let request = URLRequest(url: url, cachePolicy: URLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 10)
+            
+            let downloadingTask = session.dataTask(with: request) { [weak self] data, response, error in
+                
+                guard error == nil,
+                      let unwrData = data,
+                      let response = response as? HTTPURLResponse, response.statusCode == 200,
+                      let `self` = self else {
+                    return
+                }
+                
+                guard let image = UIImage(data: unwrData) else {
+                    return
+                }
+                
+//                DispatchQueue.main.async {
+//                    self.imageCache.setObject(image, forKey: url.absoluteString as NSString)
+//                }
+                self.imageCache.setObject(image, forKey: url.absoluteString as NSString)
+                
+                DispatchQueue.main.async {
+                    completion(image)
+                }
+            }
+            downloadingTask.resume()
+        }
+    }
+    
+    
 }

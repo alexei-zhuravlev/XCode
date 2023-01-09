@@ -11,6 +11,8 @@ import RealmSwift
 class PosterFullViewController: UIViewController {
     
     let model = Model()
+    let service = URLService()
+    let address = "https://image.tmdb.org/t/p/w500"
     
     var filmId:Int = Int()
     
@@ -24,8 +26,14 @@ class PosterFullViewController: UIViewController {
         super.viewDidLoad()
         
         let film = model.filmObjects?.filter("id == \(filmId)").first
+        
+        guard let unwrFilmPic = film?.filmPic, let posterURL = URL(string: address + unwrFilmPic) else {return}
+        
+        service.getSetPoster(withURL: posterURL) { image in
+            self.filmPosterFull.image = image
+        }
 
-        filmPosterFull.image = UIImage(named: film?.filmPic ?? "image1")
+//        filmPosterFull.image = UIImage(named: film?.filmPic ?? "image1")
 //        filmPosterFull.image = UIImage(named: model.filmObjects?[detailIndexPath].filmPic ?? "image0")
     }
     

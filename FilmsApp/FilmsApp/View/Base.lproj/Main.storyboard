@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TJ2-GF-CnU">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="MainCollectionView" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TJ2-GF-CnU">
                                 <rect key="frame" x="5" y="91" width="380" height="719"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Mtc-11-5uB">
@@ -68,6 +68,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="TJ2-GF-CnU" id="F6V-CQ-VNP"/>
+                        <outlet property="favBTN" destination="JR5-SM-t7D" id="2r9-ic-eXX"/>
                         <outlet property="sortingButton" destination="2wm-2f-Gdm" id="MQB-ax-qrc"/>
                     </connections>
                 </viewController>
@@ -377,7 +378,7 @@
                                     <outletCollection property="gestureRecognizers" destination="ks7-ts-bTu" appends="YES" id="aR5-kk-YCf"/>
                                 </connections>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название фильма" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCW-fC-uew">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название фильма" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCW-fC-uew">
                                 <rect key="frame" x="215" y="57.000000000000007" width="153" height="20.333333333333336"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -396,10 +397,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PQ7-Ia-93e">
-                                <rect key="frame" x="27" y="575.66666666666663" width="347" height="180"/>
+                                <rect key="frame" x="27" y="575.66666666666663" width="347" height="150"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="YUd-NA-Ur6"/>
+                                    <constraint firstAttribute="height" constant="150" id="YUd-NA-Ur6"/>
                                 </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
@@ -407,7 +408,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="EmM-TU-Oks">
-                                <rect key="frame" x="27" y="411.66666666666669" width="291.33333333333337" height="120.00000000000006"/>
+                                <rect key="frame" x="27" y="411.66666666666669" width="291.33333333333331" height="120.00000000000006"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="lfj-Nt-YoT"/>
@@ -454,7 +455,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwo-Xe-cis">
-                                <rect key="frame" x="169.66666666666666" y="765.66666666666663" width="50.666666666666657" height="34.333333333333371"/>
+                                <rect key="frame" x="169.66666666666666" y="735.66666666666663" width="50.666666666666657" height="54.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="heart.fill" catalog="system"/>
                                 <connections>
@@ -497,7 +498,7 @@
                             <constraint firstItem="PQ7-Ia-93e" firstAttribute="top" secondItem="EmM-TU-Oks" secondAttribute="bottom" constant="44" id="FYM-da-U8h"/>
                             <constraint firstItem="PQ7-Ia-93e" firstAttribute="top" secondItem="9zW-NP-6PE" secondAttribute="bottom" constant="8" symbolic="YES" id="HGA-9H-Hph"/>
                             <constraint firstItem="tvl-vD-2nR" firstAttribute="leading" secondItem="ffa-tO-Wlb" secondAttribute="trailing" constant="8" symbolic="YES" id="Ifo-fQ-OPh"/>
-                            <constraint firstItem="0Os-2b-lPc" firstAttribute="bottom" secondItem="dwo-Xe-cis" secondAttribute="bottom" constant="10" id="JZa-ID-8MS"/>
+                            <constraint firstItem="0Os-2b-lPc" firstAttribute="bottom" secondItem="dwo-Xe-cis" secondAttribute="bottom" constant="20" id="JZa-ID-8MS"/>
                             <constraint firstItem="RuK-6G-So8" firstAttribute="leading" secondItem="ffa-tO-Wlb" secondAttribute="trailing" constant="8" symbolic="YES" id="Lzy-Zk-UnO"/>
                             <constraint firstItem="0Os-2b-lPc" firstAttribute="trailing" secondItem="tvl-vD-2nR" secondAttribute="trailing" constant="22" id="NuE-94-cs7"/>
                             <constraint firstItem="0Os-2b-lPc" firstAttribute="trailing" secondItem="VCW-fC-uew" secondAttribute="trailing" constant="22" id="OaC-89-39u"/>
@@ -538,10 +539,10 @@
             </objects>
             <point key="canvasLocation" x="1561.5384615384614" y="3.5545023696682461"/>
         </scene>
-        <!--Кадры из Фильа-->
+        <!--Кадры из Фильма-->
         <scene sceneID="LGs-Dl-GCB">
             <objects>
-                <viewController storyboardIdentifier="FilmPicsViewController" title="Кадры из Фильа" id="Ks1-aY-2XK" customClass="FilmPicsViewController" customModule="FilmsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FilmPicsViewController" title="Кадры из Фильма" id="Ks1-aY-2XK" customClass="FilmPicsViewController" customModule="FilmsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ddn-an-lvT">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -623,9 +624,9 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BQI-ZT-bRZ">
                                 <rect key="frame" x="0.0" y="47" width="390" height="763"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hh3-GN-PTN">
-                                    <size key="itemSize" width="171" height="241"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hh3-GN-PTN">
+                                    <size key="itemSize" width="300" height="500"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -668,7 +669,6 @@
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="g7J-Kj-5nT"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="g7J-Kj-5nT" firstAttribute="trailing" secondItem="BQI-ZT-bRZ" secondAttribute="trailing" id="6Pw-yH-ueL"/>
                             <constraint firstItem="g7J-Kj-5nT" firstAttribute="bottom" secondItem="BQI-ZT-bRZ" secondAttribute="bottom" id="JoK-se-TUf"/>
