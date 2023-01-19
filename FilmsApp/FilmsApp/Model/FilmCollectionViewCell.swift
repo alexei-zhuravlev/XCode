@@ -25,14 +25,14 @@ class FilmCollectionViewCell: UICollectionViewCell {
             guard let unwrData = data, let url = URL(string: address + unwrData.filmPic) else {
                 return
             }
-            DispatchQueue.main.async {
-                self.urlServise.getSetPoster(withURL: url) { image in
-                    self.posterPreviewImageView.image = image
-                }
-            }
-//            urlServise.getSetPoster(withURL: url) { image in
-//                self.posterPreviewImageView.image = image
+//            DispatchQueue.main.async {
+//                self.urlServise.getSetPoster(withURL: url) { image in
+//                    self.posterPreviewImageView.image = image
+//                }
 //            }
+            urlServise.getSetPoster(withURL: url) { image in
+                self.posterPreviewImageView.image = image
+            }
 
             filmTitleLabel.text = unwrData.filmTitle
             releaseYearLabel.text = String(unwrData.releaseYear)

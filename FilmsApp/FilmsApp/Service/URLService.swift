@@ -124,14 +124,15 @@ class URLService{
                     return
                 }
                 
-//                DispatchQueue.main.async {
-//                    self.imageCache.setObject(image, forKey: url.absoluteString as NSString)
-//                }
-                self.imageCache.setObject(image, forKey: url.absoluteString as NSString)
-                
                 DispatchQueue.main.async {
+                    self.imageCache.setObject(image, forKey: url.absoluteString as NSString)
                     completion(image)
                 }
+//                self.imageCache.setObject(image, forKey: url.absoluteString as NSString)
+                
+//                DispatchQueue.main.async {
+//                    completion(image)
+//                }
             }
             downloadingTask.resume()
         }

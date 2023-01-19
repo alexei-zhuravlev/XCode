@@ -24,6 +24,7 @@ class Model{
     
     var arrayHelper: Results<FilmObject>?
     
+    
     var sortAscending: Bool = true
 
     func ratingSort(){

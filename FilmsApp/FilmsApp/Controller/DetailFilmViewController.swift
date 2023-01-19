@@ -20,6 +20,7 @@ class DetailFilmViewController: UIViewController, UIViewControllerTransitioningD
     @IBOutlet weak var addToFavorites: UIButton!
     
     var model = Model()
+    let realm = try? Realm()
     
     var urlService = URLService()
     var address = "https://image.tmdb.org/t/p/w500"
@@ -55,7 +56,29 @@ class DetailFilmViewController: UIViewController, UIViewControllerTransitioningD
         DispatchQueue.main.async {
 
             self.item = self.model.filmObjects?.filter("id == \(self.filmID)")
-            
+            URLService().dataBacdropsRequest(movieID: self.item?.first?.id ?? 0) {
+                DispatchQueue.main.async {
+                    let object = self.model.filmObjects?.filter("id == \(self.item?.first?.id ?? 0)").first
+                    for pic in StorageForBackdrops.shared.arrayOfBackdrops{
+                        try! self.realm?.write({
+                            object?.screenshots.append(pic)
+                            self.realm?.add(object!, update: .all)
+                        })
+                    }
+                }
+//                let object = self.model.filmObjects?.filter("id == \(self.item?.first?.id ?? 0)").first
+//                for pic in StorageForBackdrops.shared.arrayOfBackdrops{
+//                    try! self.realm?.write({
+//                        object?.screenshots.append(pic)
+//                        self.realm?.add(object!, update: .all)
+//                    })
+//
+//                }
+                DispatchQueue.main.async {
+                    self.collectionOfPics.reloadData()
+                }
+//                self.collectionOfPics.reloadData()
+            }
             
             guard let unwrFilmPic = self.item?.first?.filmPic,
                   let posterURL = URL(string: self.address + unwrFilmPic) else {return}

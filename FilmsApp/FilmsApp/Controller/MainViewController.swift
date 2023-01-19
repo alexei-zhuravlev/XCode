@@ -28,8 +28,8 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
 
         
-//        print("###########")
-//        print(realm?.configuration.fileURL)
+        print("###########")
+        print(realm?.configuration.fileURL)
         
 
         favBTN.accessibilityIdentifier = "FavBTN"
@@ -48,7 +48,7 @@ class MainViewController: UIViewController {
         let xibCell = UINib(nibName: "FilmCollectionViewCell", bundle: nil)
         
         collectionView.register(xibCell, forCellWithReuseIdentifier: "FilmCell")
- 
+
         DispatchQueue.main.async {
             self.service.popularFilms()
             self.model.ratingSort()
@@ -84,6 +84,8 @@ class MainViewController: UIViewController {
     
 }
 
+//MARK: - extensions for collectionView
+
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -94,12 +96,17 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         // развёртываем опционал у arrayHelper, чтобы передавать его в методы ячейки
+        
+
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilmCell", for: indexPath) as? FilmCollectionViewCell,
               let item = model.arrayHelper?[indexPath.row] else { // вот он [опционал]
            return UICollectionViewCell()
        }
         // а вот передача новых данных
-        cell.data = item
+        DispatchQueue.main.async {
+            cell.data = item
+        }
+//        cell.data = item
         
         return cell
     }
