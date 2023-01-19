@@ -63,7 +63,6 @@ class Model{
         // сделали optional binding для объекта
         if let film = filmObjects?.filter("id == \(item)").first,
            let array = filmObjects{
-//            let object = LikedFilmObiect()
             // блок do/catch
             do {
                 // запись в объект по "индексу" item

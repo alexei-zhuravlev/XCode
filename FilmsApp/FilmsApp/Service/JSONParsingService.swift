@@ -12,8 +12,6 @@ class JSONParsingService{
     
     func parseJSON(parseData: Data, parseError:Error?){
         
-//        let model = Model()
-        
         do{
             let filmObject = try JSONDecoder().decode(MoviesList.self, from: parseData)
             
@@ -23,7 +21,6 @@ class JSONParsingService{
             //запись в БД
             try realm?.write({
                 for item in jsonObjects{
-//                    let storage = StorageForBackdrops.shared
                     let object = FilmObject()
                     object.id = item.id ?? 0
                     object.filmTitle = item.original_title ?? "N/A"
@@ -38,11 +35,9 @@ class JSONParsingService{
                     realm?.add(object, update: .all)
             }
             })
-            
         }catch let error{
             print(error)
         }
-        
     }
     
     func parseBackdrops(parseData:Data, parseError:Error?) -> [String]{

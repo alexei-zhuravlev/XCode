@@ -29,10 +29,6 @@ class DetailFilmViewController: UIViewController, UIViewControllerTransitioningD
     
     var transition: RoundingTransition = RoundingTransition()
     
-//    var shotsArray = ["image1","image2","image3","image4"]
-    
-//    var screenshotsArray: [String] = []
-    
     var item:Results<FilmObject>?
     
     var filmID:Int = Int()
@@ -66,18 +62,10 @@ class DetailFilmViewController: UIViewController, UIViewControllerTransitioningD
                         })
                     }
                 }
-//                let object = self.model.filmObjects?.filter("id == \(self.item?.first?.id ?? 0)").first
-//                for pic in StorageForBackdrops.shared.arrayOfBackdrops{
-//                    try! self.realm?.write({
-//                        object?.screenshots.append(pic)
-//                        self.realm?.add(object!, update: .all)
-//                    })
-//
-//                }
+
                 DispatchQueue.main.async {
                     self.collectionOfPics.reloadData()
                 }
-//                self.collectionOfPics.reloadData()
             }
             
             guard let unwrFilmPic = self.item?.first?.filmPic,
@@ -98,12 +86,6 @@ class DetailFilmViewController: UIViewController, UIViewControllerTransitioningD
                     self.addToFavorites.setImage(UIImage(systemName: "heart.fill"), for: .normal)
                 }
             self.filmDescription.text = itemForUsing?.overview ?? "N/A"
-            
-//            if let testArray = itemForUsing?.screenshots{
-//                for el in testArray{
-//                    self.screenshotsArray.append(el)
-//                }
-//            }
         }
     }
     
@@ -150,8 +132,7 @@ class DetailFilmViewController: UIViewController, UIViewControllerTransitioningD
     
     @IBAction func toFullPicsViewBtnPressed(_ sender: UIButton) {
         guard let destViewController = storyboard?.instantiateViewController(withIdentifier: "FilmPicsViewController") as? FilmPicsViewController else {return}
-        
-//        destViewController.shotsFromFilmArray = shotsArray
+
         if let arrayToSend = self.model.filmObjects?.filter("id == \(self.filmID)").first?.screenshots{
             for el in arrayToSend {
                 destViewController.shotsFromFilmArray.append(el)
@@ -159,7 +140,6 @@ class DetailFilmViewController: UIViewController, UIViewControllerTransitioningD
         }
         navigationController?.pushViewController(destViewController, animated: true)
     }
-    
 }
 
 extension DetailFilmViewController: UICollectionViewDelegate, UICollectionViewDataSource{
@@ -184,6 +164,4 @@ extension DetailFilmViewController: UICollectionViewDelegate, UICollectionViewDa
         }
         return cell
     }
-    
-    
 }

@@ -25,20 +25,15 @@ class FavoriteFilmCollectionViewCell: UICollectionViewCell {
     
     var data:LikedFilmObiect?{
         didSet{
-//            guard data != nil else { return}
             guard let likedData = data, let url = URL(string: address + likedData.filmPic) else {return}
             
-//            favFilmPoster.image = UIImage(named: data?.filmPic ?? "image1")
             
             urlService.getSetPoster(withURL: url) { image in
                 self.favFilmPoster.image = image
             }
             
             favFilmPoster.layer.cornerRadius = 12
-//            favFilmTitle.text = data?.filmTitle
             favFilmTitle.text = likedData.filmTitle
-//            favFilmRating.text = String(data?.releaseYear ?? 0)
-//            favFilmYear.text = String(data?.filmRating ?? 0)
             favFilmRating.text = String(likedData.filmRating)
             favFilmYear.text = String(likedData.releaseYear)
         }
@@ -51,8 +46,7 @@ class FavoriteFilmCollectionViewCell: UICollectionViewCell {
             return
         }
         // вызываем метод updateLike
-//        model.updateLike(at: likedData.id)
-//        вызываем метод удаления из массива "лайкнутые"
+
         model.deleteLikedItem(at: likedData.id)
         // изменяем вид ячейки
         if alpha == 0.55 {

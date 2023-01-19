@@ -26,9 +26,6 @@ class URLService{
                    error == nil else {
                return
            }
-//            DispatchQueue.main.async {
-//                self.parser.parseJSON(parseData: unwrData, parseError: error)
-//            }
             self.parser.parseJSON(parseData: unwrData, parseError: error)
         }
         task.resume()
@@ -128,15 +125,8 @@ class URLService{
                     self.imageCache.setObject(image, forKey: url.absoluteString as NSString)
                     completion(image)
                 }
-//                self.imageCache.setObject(image, forKey: url.absoluteString as NSString)
-                
-//                DispatchQueue.main.async {
-//                    completion(image)
-//                }
             }
             downloadingTask.resume()
         }
     }
-    
-    
 }

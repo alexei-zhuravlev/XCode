@@ -12,8 +12,6 @@ let color1 = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.30196
 
 class MainViewController: UIViewController {
     
-
-    
     let model = Model ()
     let realm = try? Realm()
     let service = URLService()
@@ -26,12 +24,10 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
-        print("###########")
-        print(realm?.configuration.fileURL)
+//        print("###########")
+//        print(realm?.configuration.fileURL)
         
-
         favBTN.accessibilityIdentifier = "FavBTN"
         
         collectionView.dataSource = self
@@ -96,8 +92,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         // развёртываем опционал у arrayHelper, чтобы передавать его в методы ячейки
-        
-
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilmCell", for: indexPath) as? FilmCollectionViewCell,
               let item = model.arrayHelper?[indexPath.row] else { // вот он [опционал]
            return UICollectionViewCell()
@@ -106,8 +100,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         DispatchQueue.main.async {
             cell.data = item
         }
-//        cell.data = item
-        
         return cell
     }
     
@@ -120,7 +112,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         destViewController.receivedIndex = model.arrayHelper?[indexPath.row].id ?? 0
         destViewController.filmID = model.arrayHelper?[indexPath.row].id ?? 0
         navigationController?.pushViewController(destViewController, animated: true)
-        
     }
     
     // MARK: - SearchBar Methods
@@ -136,7 +127,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
-//        collectionView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -151,7 +141,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
-//        collectionView.reloadData()
     }
     }
     

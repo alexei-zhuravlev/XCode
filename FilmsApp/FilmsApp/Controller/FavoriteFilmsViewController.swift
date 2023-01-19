@@ -21,14 +21,9 @@ class FavoriteFilmsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-//        model.showLikedFilms()
-        
         let xibCell = UINib(nibName: "FavoriteFilmCollectionViewCell", bundle: nil)
         collectionView.register(xibCell, forCellWithReuseIdentifier: "FavoritFilmCell")
         collectionView.reloadData()
-        
-        collectionView.reloadData()
-        
     }
 
     @IBAction func updateBtnPressed(_ sender: UIBarButtonItem) {
@@ -66,6 +61,4 @@ extension FavoriteFilmsViewController: UICollectionViewDelegate, UICollectionVie
         navigationController?.pushViewController(destViewController, animated: true)
         
     }
-    
-    
 }

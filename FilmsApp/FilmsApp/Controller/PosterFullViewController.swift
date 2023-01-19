@@ -32,9 +32,6 @@ class PosterFullViewController: UIViewController {
         service.getSetPoster(withURL: posterURL) { image in
             self.filmPosterFull.image = image
         }
-
-//        filmPosterFull.image = UIImage(named: film?.filmPic ?? "image1")
-//        filmPosterFull.image = UIImage(named: model.filmObjects?[detailIndexPath].filmPic ?? "image0")
     }
     
     @IBAction func closeButtonPressed(_ sender: UIButton) {
