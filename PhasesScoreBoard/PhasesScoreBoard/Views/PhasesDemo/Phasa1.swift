@@ -13,7 +13,7 @@ struct Phasa1: View {
             HStack{
                 ForEach(0...2, id: \.self) { index in
                     ZStack{
-                        Image(systemName: "rectangle.portrait.fill")
+                        Image(systemName: "rectangle.portrait")
                             .overlay(RoundedRectangle(cornerRadius: 5, style: .continuous).stroke(.black, lineWidth: 2))
                             .font(.title)
                             .foregroundColor(.white)
@@ -30,11 +30,11 @@ struct Phasa1: View {
                 
                 ForEach(0...2, id: \.self) { index in
                     ZStack{
-                        Image(systemName: "rectangle.portrait.fill")
+                        Image(systemName: "rectangle.portrait")
                             .overlay(RoundedRectangle(cornerRadius: 5, style: .continuous).stroke(.black, lineWidth: 2))
                             .font(.title)
                             .foregroundColor(.white)
-                            .shadow(color: .gray, radius: 5, x: 3, y: 3)
+                            .shadow(color: .gray, radius: 5, x: 2, y: 2)
                         Text("3")
                             .font(.title2)
                             .bold()

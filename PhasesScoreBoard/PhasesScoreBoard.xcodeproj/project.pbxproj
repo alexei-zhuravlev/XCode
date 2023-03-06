@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D44943F829A4E76200254D64 /* EditPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44943F729A4E76200254D64 /* EditPlayer.swift */; };
+		D44943FD29A63EAD00254D64 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44943FC29A63EAD00254D64 /* PlayerView.swift */; };
 		D45D658C29924C2600998A54 /* PhasesScoreBoardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45D658B29924C2600998A54 /* PhasesScoreBoardApp.swift */; };
 		D45D658E29924C2600998A54 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45D658D29924C2600998A54 /* ContentView.swift */; };
 		D45D659029924C2700998A54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D45D658F29924C2700998A54 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		D44943F629A4E6E400254D64 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D44943F729A4E76200254D64 /* EditPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPlayer.swift; sourceTree = "<group>"; };
+		D44943FC29A63EAD00254D64 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		D45D658829924C2600998A54 /* PhasesScoreBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhasesScoreBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D45D658B29924C2600998A54 /* PhasesScoreBoardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhasesScoreBoardApp.swift; sourceTree = "<group>"; };
 		D45D658D29924C2600998A54 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				D47A4FAC299BBA5E00F0D361 /* PhasesDemo */,
 				D45D659929954D4300998A54 /* AddPlayerScreen.swift */,
 				D44943F729A4E76200254D64 /* EditPlayer.swift */,
+				D44943FC29A63EAD00254D64 /* PlayerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				D47A4FAE299BBA8F00F0D361 /* Phasa1.swift in Sources */,
 				D47A4FC0299BC18F00F0D361 /* Phasa10.swift in Sources */,
 				D47A4FBA299BC0DD00F0D361 /* Phasa7.swift in Sources */,
+				D44943FD29A63EAD00254D64 /* PlayerView.swift in Sources */,
 				D45D658E29924C2600998A54 /* ContentView.swift in Sources */,
 				D47A4FB6299BC04800F0D361 /* Phasa5.swift in Sources */,
 				D45D659A29954D4300998A54 /* AddPlayerScreen.swift in Sources */,

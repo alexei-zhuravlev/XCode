@@ -25,10 +25,6 @@ struct AddPlayer: View {
                 .padding()
                 }
             
-//            Text ("Введите счет")
-//
-//            TextField("Введите счет", text: $players.newScore)
-            
             Button {
                 self.players.addNewPlayer()
                 self.players.newPlayerName = ""
